@@ -12,18 +12,16 @@
     "username":      { "type": "string", "minLength": 3, "required": true, "unique": true },
     "email":         { "type": "email",  "required": true, "unique": true },
     "password":      { "type": "password", "private": true },
-    "inviteCode":    { "type": "string", "unique": true, "configurable": false },
+    "inviteCode":    { "type": "string", "unique": true },
     "referredBy":    {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "referrals"
+      "target": "plugin::users-permissions.user"
     },
     "referrals":     {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "plugin::users-permissions.user",
-      "mappedBy": "referredBy"
+      "target": "plugin::users-permissions.user"
     }
   }
 } 
