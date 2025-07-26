@@ -36,10 +36,10 @@ module.exports = (plugin) => {
     // 4) 创建邀请记录，维护邀请关系
     await strapi.db.query('api::invite-record.invite-record').create({
       data: {
-        inviter: inviter.id,
-        invitee: createdUser.id,
-        inviteCode: inviteCode,
-        invitedAt: new Date()
+        inviter_user: inviter.id,
+        invitee_user: createdUser.id,
+        used_invite_code: inviteCode,
+        invited_at: new Date()
       }
     });
 

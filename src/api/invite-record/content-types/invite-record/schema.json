@@ -9,20 +9,20 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "inviter": {
+    "inviter_user": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user"
     },
-    "invitee": {
+    "invitee_user": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user"
     },
-    "inviteCode": {
+    "used_invite_code": {
       "type": "string"
     },
-    "invitedAt": {
+    "invited_at": {
       "type": "datetime"
     }
   }
