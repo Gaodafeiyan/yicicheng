@@ -1,27 +1,25 @@
 {
   "collectionName": "up_users",
-  "info": {
-    "singularName": "user",
-    "pluralName": "users",
-    "displayName": "用户"
-  },
-  "pluginOptions": {
-    "users-permissions": { "autoCreatedByAdmin": true }
-  },
+  "info": { "displayName": "用户" },
+
+  /* 只写"新增/改动"部分！下面这 3 个就是新增字段 */
   "attributes": {
-    "username":      { "type": "string", "minLength": 3, "required": true, "unique": true },
-    "email":         { "type": "email",  "required": true, "unique": true },
-    "password":      { "type": "password", "private": true },
-    "inviteCode":    { "type": "string", "unique": true },
-    "referredBy":    {
+    "inviteCode": {
+      "type": "string",
+      "unique": true
+    },
+
+    "referredBy": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user"
     },
-    "referrals":     {
+
+    "referrals": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "plugin::users-permissions.user"
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "referredBy"
     }
   }
 } 
