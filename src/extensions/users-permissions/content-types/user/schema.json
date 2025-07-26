@@ -1,25 +1,10 @@
 {
   "collectionName": "up_users",
   "info": { "displayName": "用户" },
-
-  /* 只写"新增/改动"部分！下面这 3 个就是新增字段 */
   "attributes": {
     "inviteCode": {
       "type": "string",
       "unique": true
-    },
-
-    "referredBy": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user"
-    },
-
-    "referrals": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "plugin::users-permissions.user",
-      "mappedBy": "referredBy"
     }
   }
 } 

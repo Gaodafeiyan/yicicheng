@@ -23,21 +23,30 @@ module.exports = (plugin) => {
 
     if (!inviter) return ctx.badRequest('Invalid invite code');
 
-    // 2) 构建注册参数（挂上 referredBy）
+    // 2) 构建注册参数（不包含 referredBy，避免关系字段问题）
     const newUserData = {
       username,
       email,
-      password,
-      referredBy: inviter.id
+      password
     };
 
     // 3) 调用核心 service 创建用户
     const createdUser = await getService('user').add(newUserData);
 
-    // 4) 生成 JWT
+    // 4) 创建邀请记录，维护邀请关系
+    await strapi.db.query('api::invite-record.invite-record').create({
+      data: {
+        inviter: inviter.id,
+        invitee: createdUser.id,
+        inviteCode: inviteCode,
+        invitedAt: new Date()
+      }
+    });
+
+    // 5) 生成 JWT
     const jwt = getService('jwt').issue({ id: createdUser.id });
 
-    // 5) 输出（使用 sanitize 保证安全）
+    // 6) 输出（使用 sanitize 保证安全）
     ctx.send({
       jwt,
       user: await sanitize.contentAPI.output(createdUser)

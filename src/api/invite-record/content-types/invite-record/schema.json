@@ -1,0 +1,29 @@
+{
+  "collectionName": "invite_records",
+  "info": {
+    "singularName": "invite-record",
+    "pluralName": "invite-records",
+    "displayName": "邀请记录"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "inviter": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "invitee": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "inviteCode": {
+      "type": "string"
+    },
+    "invitedAt": {
+      "type": "datetime"
+    }
+  }
+} 
