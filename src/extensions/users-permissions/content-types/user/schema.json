@@ -1,1 +1,30 @@
-{} 
+{
+  "collectionName": "up_users",
+  "info": {
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "用户"
+  },
+  "pluginOptions": {
+    "users-permissions": { "autoCreatedByAdmin": true }
+  },
+  "attributes": {
+    "yaoqingMa": {
+      "type": "string",
+      "unique": true,
+      "configurable": false
+    },
+    "shangji": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "xiaji"
+    },
+    "xiaji": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "shangji"
+    }
+  }
+} 
