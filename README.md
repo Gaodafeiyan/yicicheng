@@ -59,3 +59,39 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 ---
 
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+
+## 手动测试邀请码注册接口
+
+1. 获取现有用户的邀请码（需管理员 Token）：
+
+```bash
+curl -H "Authorization: bearer $ADMIN_TOKEN" http://localhost:1337/api/users
+```
+
+2. 使用邀请码注册新用户：
+
+```bash
+curl -X POST http://localhost:1337/api/auth/local/register-with-invite \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "username":"alice",
+    "email":"alice@example.com",
+    "password":"Secret123!",
+    "inviteCode":"ABC123"
+  }'
+```
+
+预期返回：
+
+```json
+{
+  "jwt": "eyJhbGciOiJIUzI1...",
+  "user": {
+    "id": 2,
+    "username": "alice",
+    "email": "alice@example.com",
+    "inviteCode": "XP9K2A",
+    "referredBy": 1
+  }
+}
+```
