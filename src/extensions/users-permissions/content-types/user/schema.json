@@ -1,10 +1,1 @@
-{
-  "collectionName": "up_users",
-  "info": { "displayName": "用户" },
-  "attributes": {
-    "inviteCode": {
-      "type": "string",
-      "unique": true
-    }
-  }
-} 
+{} 
